@@ -1,28 +1,28 @@
 <template>
   <div class="hello">
     {{Light}}
+    {{Count}}
   </div>
 </template>
 
 <script>
-export default {
-  name: 'Light',
+  export default {
+      name: 'Light',
   
-  data () 
-    {
-      return { 
-                Light: null                
-                }
-    },
+      data () {
+          return { 
+              Light: null,     
+              Count: 0         
+          }
+      },
 
-  mounted () {
-      fetch('http://localhost:3000/light')
-          .then((response) => {
-          this.Light = response.json();
-          })
-          .then((data) => {
-          console.log(data);
-          });
+      mounted () {
+          fetch('http://localhost:3000/light').then(response => 
+              response.json().then(data => 
+                  ({data:data})).then(res => {
+                      this.Count=res.data.light[0]
+                      this.Light=res.data.light[1]
+                  }));
     },
 }
 </script>
