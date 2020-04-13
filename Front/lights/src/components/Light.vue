@@ -26,12 +26,12 @@
         },
 
         refreshComp(){
-          fetch('http://localhost:3000/light').then(response => 
-              response.json().then(data => 
-                  ({data:data})).then(res => {
-                      this.Count=res.data.light[0]
-                      this.Light=res.data.light[1]
-                  }));
+            fetch('http://localhost:3000/light').then(response => 
+                response.json().then(data => 
+                    ({data:data})).then(res => {
+                          this.Count=res.data.light[0]
+                          this.Light=res.data.light[1]
+                    }));
         }
                 
     },
