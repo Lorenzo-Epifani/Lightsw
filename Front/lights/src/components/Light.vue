@@ -1,8 +1,9 @@
 <template>
   <div class="hello">
-  <md-button v-on:click="lightSwitch">LightButton</md-button>
-    {{Light}}
-    {{Count}}
+    <md-badge class="md-primary" v-bind:md-content="this.Count">
+      <md-button class="md-fab" v-on:click="lightSwitch"><md-icon>settings_brightness</md-icon></md-button>
+    </md-badge>
+
   </div>
 </template>
 
@@ -12,7 +13,6 @@
   
       data () {
           return { 
-              boolean: false,
               Light: null,     
               Count: 0         
           }
@@ -22,7 +22,7 @@
         lightSwitch() {
 
             fetch('http://localhost:3000/light/event_0',{method: 'POST'})
-            this.refreshComp()               
+            this.refreshComp()
         },
 
         refreshComp(){
@@ -31,6 +31,8 @@
                     ({data:data})).then(res => {
                           this.Count=res.data.light[0]
                           this.Light=res.data.light[1]
+                          this.Light?document.body.style.backgroundColor = 'white':
+                                document.body.style.backgroundColor = 'black' 
                     }));
         }
                 
@@ -59,7 +61,11 @@ a {
   color: #42b983;
 }
 
-.md-switch {
-  transform: scale(3);
+button.md-button.md-fab.md-theme-default  {
+  transform: scale(1.3);
+  background-Color: LightSlateGray;
+  font-weight: bold;
 }
+
+
 </style>

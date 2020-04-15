@@ -4,7 +4,8 @@ import router from './router'
 import './registerServiceWorker'
 import 'vue-material/dist/vue-material.min.css'
 import VueMaterial from 'vue-material'
-import 'vue-material/dist/theme/default-dark.css'
+import 'vue-material/dist/theme/default.css'
+
 
 Vue.use(VueMaterial)
 
